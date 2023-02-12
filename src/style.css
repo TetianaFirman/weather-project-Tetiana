@@ -1,0 +1,60 @@
+.try {
+  max-width: 330px;
+  margin: 20px;
+}
+.container {
+  font-family: Arial, Helvetica, sans-serif;
+  border: solid;
+  border-color: cornflowerblue;
+
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+.search-container {
+  margin-bottom: 10px;
+}
+.search-window {
+  width: 230px;
+}
+.first-button {
+  margin-left: -5px;
+  width: 70px;
+  color: white;
+  background: cornflowerblue;
+  border-color: cornflowerblue;
+}
+.first-button:hover {
+  color: cornflowerblue;
+  background: white;
+}
+.date {
+  font-size: 13px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+.current-temperature {
+  font-size: 35px;
+  opacity: 0.9;
+  font-weight: bold;
+}
+.units {
+  font-size: 15px;
+  vertical-align: top;
+}
+.time-weekday {
+  font-size: 13px;
+}
+.current-images {
+  position: relative;
+  top: -82px;
+  left: 170px;
+  font-size: 68px;
+  margin-bottom: -60px;
+}
+
+.text-center {
+  border: none;
+}
+.choose-day {
+  font-size: 12px;
+}

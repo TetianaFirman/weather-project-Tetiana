@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather app</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="try">
+      <div class="container">
+        <div class="search-container">
+          <form id="search-form">
+            <input
+              type="text"
+              size="30"
+              placeholder="Change city"
+              name="search"
+              class="search-window"
+            />
+            <input class="first-button" type="submit" value="Search" />
+          </form>
+        </div>
+        <h1><span id="city">New York</span></h1>
+        <div class="date"></div>
+        <div class="time-weekday"></div>
+        <div class="current-temperature">
+          <span id="today-temp">12</span>
+          <span class="units"
+            ><a href="#" id="celsius-link"> °C</a> /
+            <a href="#" id="fahrenheit-link">°F</a></span
+          >
+        </div>
+        <div class="current-images">⛅</div>
+        <div class="row">
+          <div class="col"></div>
+        </div>
+        <div class="container text-center">
+          <div class="row d-flex justify-content-center">
+            <div class="col choose-day">
+              11 Jan <br />⛅<br /><strong>5°</strong> 9°
+            </div>
+            <div class="col choose-day">
+              12 Jan <br />⛅<br /><strong>4°</strong> 10°
+            </div>
+            <div class="col choose-day">
+              13 Jan <br />⛅<br /><strong>3°</strong> 11°
+            </div>
+            <div class="col choose-day">
+              14 Jan <br />⛅<br /><strong>4°</strong> 10°
+            </div>
+            <div class="col choose-day">
+              15 Jan <br />⛅<br /><strong>6°</strong> 9°
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/53794fb62d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="src\index.js"></script>
+  </body>
+</html>
