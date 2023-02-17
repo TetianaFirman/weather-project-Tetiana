@@ -38,12 +38,19 @@ let realDate = document.querySelector(".date");
 realDate.innerHTML = `${currentDate} ${currentMonth} ${currentYear}`;
 let realTimeWeekday = document.querySelector(".time-weekday");
 realTimeWeekday.innerHTML = `${currentHours}:${currentMinutes} ${currentDay}`;
+let iconElement = document.querySelector("#icon");
 
 function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#today-temp").innerHTML = Math.round(
     response.data.main.temp
   );
+
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 function searchCity(city) {
