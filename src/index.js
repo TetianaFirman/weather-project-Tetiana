@@ -45,7 +45,7 @@ function displayWeatherCondition(response) {
   document.querySelector("#today-temp").innerHTML = Math.round(
     response.data.main.temp
   );
-
+  celsiusTemp = response.data.main.temp;
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -81,22 +81,27 @@ searchCity("Lviv");
 //let searchFild = document.querySelector("#search-form");
 //searchFild.addEventListener("submit", search);
 
-//function changeUniteC(event) {
-//event.preventDefault();
-//let currentTempC = document.querySelector("#today-temp");
-//currentTempC.innerHTML = 17;
-//return currentTempC;
-//}
-//function changeUniteF(event) {
-// event.preventDefault();
-//let tempBeg = document.querySelector("#today-temp");
-//let fahrenheitTemp = Math.round(17 * 1.8 + 32);
-//tempBeg.innerHTML = fahrenheitTemp;}
-
-//let celsius = document.querySelector("#celsius-link");
-//let fahrenheit = document.querySelector("#fahrenheit-link");
-//celsius.addEventListener("click", changeUniteC);
-//fahrenheit.addEventListener("click", changeUniteF);
+function displayCelsiusTemp(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("activ");
+  fahrenheitLink.classList.remove("activ");
+  let currentTempC = document.querySelector("#today-temp");
+  currentTempC.innerHTML = Math.round(celsiusTemp);
+  return currentTempC;
+}
+function displayFahrenheitTemp(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("activ");
+  fahrenheitLink.classList.add("activ");
+  let tempElement = document.querySelector("#today-temp");
+  let fahrenheitTemp = Math.round(celsiusTemp * 1.8 + 32);
+  tempElement.innerHTML = fahrenheitTemp;
+}
+let celsiusTemp = null;
+let celsiusLink = document.querySelector("#celsius-link");
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+celsiusLink.addEventListener("click", displayCelsiusTemp);
+fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 
 // challenge current button
 //function showCurWeather(response) {

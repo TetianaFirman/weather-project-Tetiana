@@ -41,6 +41,7 @@
   font-size: 15px;
   vertical-align: top;
 }
+
 .time-weekday {
   font-size: 13px;
 }
@@ -58,6 +59,15 @@
 .choose-day {
   font-size: 12px;
 }
+
 #bottom {
   margin-left: 50px;
+}
+.activ {
+  color: black;
+  cursor: default;
+  text-decoration: none;
+}
+.activ:hover {
+  text-decoration: none;
 }
