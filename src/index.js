@@ -40,18 +40,34 @@ let realTimeWeekday = document.querySelector(".time-weekday");
 realTimeWeekday.innerHTML = `${currentHours}:${currentMinutes} ${currentDay}`;
 let iconElement = document.querySelector("#icon");
 
-function displayForecast() {
+function formateDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row d-flex justify-content-center">`;
-  let days = ["Sun", "Mon", "Tue", "Wen", "Thu"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  //let days = ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"];
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6 && index > 0) {
+      forecastHTML =
+        forecastHTML +
+        `
             <div class="col choose-day">
-              ${day} <br />⛅<br /><strong>5°</strong> 9°
+              ${formateDay(forecastDay.time)} <br />
+              <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                forecastDay.condition.icon
+              }.png" alt="" width=36 >
+              <br /><strong>${Math.round(
+                forecastDay.temperature.maximum
+              )}°</strong> ${Math.round(forecastDay.temperature.minimum)}°
             </div>
 `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -59,9 +75,11 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 function getForecast(coordinates) {
-  let apiKey = "0b0819c4d7c529aeda7a6d09e4107cbd";
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-
+  let apiKey = "o2a6afdft8fca44807aab60fdac3353d";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}&units=metric`;
+  //let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}`;
+  //let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  //let apiUrl = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
 function displayWeatherCondition(response) {
@@ -79,7 +97,8 @@ function displayWeatherCondition(response) {
 }
 
 function searchCity(city) {
-  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  //let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiKey = "cd173a006b0e51dac58c6d8064c94178";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }

@@ -57,7 +57,11 @@
   border: none;
 }
 .choose-day {
-  font-size: 12px;
+  font-size: 10px;
+}
+#forecast {
+  position: relative;
+  top: -15px;
 }
 
 #bottom {
