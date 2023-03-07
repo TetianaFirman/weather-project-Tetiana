@@ -63,11 +63,3 @@
 #bottom {
   margin-left: 50px;
 }
-.activ {
-  color: black;
-  cursor: default;
-  text-decoration: none;
-}
-.activ:hover {
-  text-decoration: none;
-}

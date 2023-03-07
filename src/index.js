@@ -40,6 +40,30 @@ let realTimeWeekday = document.querySelector(".time-weekday");
 realTimeWeekday.innerHTML = `${currentHours}:${currentMinutes} ${currentDay}`;
 let iconElement = document.querySelector("#icon");
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row d-flex justify-content-center">`;
+  let days = ["Sun", "Mon", "Tue", "Wen", "Thu"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col choose-day">
+              ${day} <br />⛅<br /><strong>5°</strong> 9°
+            </div>
+`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+function getForecast(coordinates) {
+  let apiKey = "0b0819c4d7c529aeda7a6d09e4107cbd";
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayForecast);
+}
 function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#today-temp").innerHTML = Math.round(
@@ -51,6 +75,7 @@ function displayWeatherCondition(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -69,6 +94,7 @@ let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
 searchCity("Lviv");
+//displayForecast();
 
 //function search(event) {
 //event.preventDefault();
@@ -81,27 +107,25 @@ searchCity("Lviv");
 //let searchFild = document.querySelector("#search-form");
 //searchFild.addEventListener("submit", search);
 
-function displayCelsiusTemp(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("activ");
-  fahrenheitLink.classList.remove("activ");
-  let currentTempC = document.querySelector("#today-temp");
-  currentTempC.innerHTML = Math.round(celsiusTemp);
-  return currentTempC;
-}
-function displayFahrenheitTemp(event) {
-  event.preventDefault();
-  celsiusLink.classList.remove("activ");
-  fahrenheitLink.classList.add("activ");
-  let tempElement = document.querySelector("#today-temp");
-  let fahrenheitTemp = Math.round(celsiusTemp * 1.8 + 32);
-  tempElement.innerHTML = fahrenheitTemp;
-}
-let celsiusTemp = null;
-let celsiusLink = document.querySelector("#celsius-link");
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-celsiusLink.addEventListener("click", displayCelsiusTemp);
-fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+//function displayCelsiusTemp(event) {
+//event.preventDefault();
+//celsiusLink.classList.add("activ");
+//fahrenheitLink.classList.remove("activ");
+//let currentTempC = document.querySelector("#today-temp");
+//currentTempC.innerHTML = Math.round(celsiusTemp);
+//return currentTempC;}
+//function displayFahrenheitTemp(event) {
+//event.preventDefault();
+//celsiusLink.classList.remove("activ");
+//fahrenheitLink.classList.add("activ");
+//let tempElement = document.querySelector("#today-temp");
+//let fahrenheitTemp = Math.round(celsiusTemp * 1.8 + 32);
+//tempElement.innerHTML = fahrenheitTemp;}
+//let celsiusTemp = null;
+//let celsiusLink = document.querySelector("#celsius-link");
+//let fahrenheitLink = document.querySelector("#fahrenheit-link");
+//celsiusLink.addEventListener("click", displayCelsiusTemp);
+//fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 
 // challenge current button
 //function showCurWeather(response) {
